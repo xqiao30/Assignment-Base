@@ -20,6 +20,7 @@ app.use((req, res, next) => {
   next();
 });
 
+
 app.route('/api')
   .get((req, res) => {
     console.log('GET request detected');
