@@ -10,8 +10,8 @@
     <form class="search-form">
         <input type="text" class="search" placeholder="City or State">
         <ul class="suggestions">
-          <li>Filter for a city</li>
-          <li>or a state</li>
+          <li>Filter for a city, establishment id, name,</li>
+          <li>category, zipcode, address line</li>
         </ul>
       </form>
     <script>
@@ -39,11 +39,15 @@
             const matchArray = findMatches(this.value, cities);
             const html = matchArray.map(place => {
                 const regex = new RegExp(this.value, 'gi');
+                const idName = place.establishment_id.replace(regex, `<span class="hl">${this.value}</span>`);
+                const name = place.name.replace(regex, `<span class="hl">${this.value}</span>`);
+                const categoryName = place.category.replace(regex, `<span class="hl">${this.value}</span>`);
+                const addressName = place.address_line_1.replace(regex, `<span class="hl">${this.value}</span>`);
                 const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
-                const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
+                const zipName = place.zip.replace(regex, `<span class="hl">${this.value}</span>`);
                     return `
                     <li>
-                    <span class="name">${cityName}, ${stateName}</span>
+                    <span class="name">${cityName}, ${idName}, ${name}, ${categoryName}, ${addressName}, ${zipName},</span>
                     <span class="population">${numberWithCommas(place.population)}</span>
                     </li>
                     `;
