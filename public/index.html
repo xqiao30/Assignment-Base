@@ -25,7 +25,9 @@
         function findMatches(wordToMatch, cities) {
             return cities.filter(place => {
                 const regex = new RegExp(wordToMatch, 'gi');
-                return place.city.match(regex) || place.state.match(regex)
+                return place.establishment_id.match(regex) || place.name.match(regex) 
+                || place.category.match(regex) || place.city.match(regex)
+                || place.address_line_1.match(regex) || place.zip.match(regex)
             });
         }
 
